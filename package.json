@@ -1,0 +1,29 @@
+{
+  "name": "muni-map-api",
+  "version": "0.0.1",
+  "description": "api to power colorado municipal boundaries map",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ColoradoDemography/Muni-Map-API.git"
+  },
+  "keywords": [
+    "municipal",
+    "boundaries",
+    "api",
+    "annexation"
+  ],
+  "author": "Daniel Trone",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ColoradoDemography/Muni-Map-API/issues"
+  },
+  "homepage": "https://github.com/ColoradoDemography/Muni-Map-API#readme",
+  "dependencies": {
+    "express": "^4.14.0",
+    "pg": "^6.1.0"
+  }
+}
