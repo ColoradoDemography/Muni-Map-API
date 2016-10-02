@@ -7,8 +7,8 @@ var appRouter = function(app) {
 
     app.get("/munis", function(req, res) {
 
-        var db = 'postgres';
-        var schema = 'public';
+        var db = 'dola';
+        var schema = 'bounds';
         var tname = 'web_annexations';
 
 
@@ -87,7 +87,7 @@ var appRouter = function(app) {
         function sendtodatabase(sqlstring) {
 
             //var conString = "postgres://codemog:demography@gis.dola.colorado.gov:5433/dola";  //this is a read only account, have fun!
-          var conString = "postgres://postgres:postgres@demog-test.cudcner3avpd.us-west-2.rds.amazonaws.com:5432/postgres";
+          var conString = "postgres://codemog:demography@gis.dola.colorado.gov:5433/dola";
             var client = new pg.Client(conString);
 
             client.connect(function(err) {
