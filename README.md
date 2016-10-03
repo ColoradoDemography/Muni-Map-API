@@ -10,33 +10,25 @@ This is one of the things I really wanted to accomplish before I left, but ran o
 
 ## Instructions for Converting Muni Map from AGOL to Postgres/PostGIS
 
- - Upload the web\_annexations layer to postgres somewhere with the other dola layers (probably in the same place as the special districts).  I used shp2pgsql, but sometimes you have to install half of apt-get to make that work.  Not exactly sure how to do that best from windows.
+1. Download the 3 SQL files in the SQL folder to your hard drive.  You will be uploading each of these files to the dola database.
 
-<pre>
-shp2pgsql -s 4269 Web_Annexations05132016.shp public.web_annexations | psql -h localhost -d postgres -U postgres
-</pre>
+2. Using PgAdmin, click on the dola database to make sure it is selected.  Then open the PSQL console.  
 
-While you're at it, you should upload annexations, baselayer, and deannexations.
+3. In the console, type in:
 
- - Change the code in this project to point to the web\_annexations layers at DOLA, rather than my temporary amazon host account.  See lines 10-12 in routes.js.
+```
+\i C:/wherever/the/path/is/annexations.sql
+```
 
- - Dockerize this, and launch it on the gis server.  Port 4010 should be the next available port (since 4009 is usda).
+Do this for each of the SQL files.  That should give you the 3 base tables that you will edit from.  
 
- - Change the path of the api in the CO\_Muni client app.  Line 121 in app.js
+4. The output tables; munibounds and web\_annexations are created through another SQL query which you'll find in the OtherSQL folder.  You can just copy and paste this text and run it in the PgAdmin Query Window.  In the near future I'll create a task in the Cron container that will run this script for you once a week (and export munibounds to google storage).
 
- - Commit changes, but also commit to gh-pages branch:
- 
-<pre>
-git push
-git push origin master:gh-pages
-</pre>
+5. Dockerize this, and launch it on the gis server.  Port 4010 should be the next available port (since 4009 is usda).
 
- - Make sure the app works on https://coloradodemography.github.io/CO_Muni before updating the app to production in the panel.
+6. Make sure the app works on https://coloradodemography.github.io/CO_Muni before updating the app to production in the panel.
 
-** This is where I write a PostGIS SQL script and schedule a process in the CRON container that converts the baselayer, annexations, and deannexations layers into the web\_annexation layer each week. **
-
- - Before I can do this though, I need to know what the baselayer, annexation layer, and de-annexation layer schemas look like.  Send me the shapefiles when you get a chance.
-
+---
 
 Once this is all in place, you'll do your editing directly with QGIS and PostGIS (dont forget to make a backup copy first).  It saves the enormous hassle of editing in ArcMap, transforming with Model Builder, uploading to AGOL, uploading to Google Storage, and changing the dates on the client application.
 
