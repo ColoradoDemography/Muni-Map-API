@@ -6,7 +6,8 @@ The API is simple.  It takes only a bounding box (bb) and a map zoom level (zoom
 
 
 
-This is one of the things I really wanted to accomplish before I left, but ran out of time.  Somewhat sadly, this didn't take nearly as long as I thought it would (though I'm not done yet, as you'll see at the end).
+The client changes in the MuniMap have already been completed.  All that's left is to update the database and launch the docker container which will require some manual work (below):
+
 
 ## Instructions for Converting Muni Map from AGOL to Postgres/PostGIS
 
@@ -33,4 +34,6 @@ Do this for each of the SQL files.  That should give you the 3 base tables that 
 Once this is all in place, you'll do your editing directly with QGIS and PostGIS (dont forget to make a backup copy first).  It saves the enormous hassle of editing in ArcMap, transforming with Model Builder, uploading to AGOL, uploading to Google Storage, and changing the dates on the client application.
 
 The downside will probably be editing in QGIS.  I'm not sure what that will entail, since I've never done it.  Worst case is that you download the Annexations layer from QGIS as a shapefile, edit with ArcMap, and then upload back to QGIS.  That's still a much easier process than it was.
+
+Know that if anythiing dramatic happens when you're editing, we have dozens of database backups stored in google storage (bound to happen when experimenting with editing in QGIS).  Extract one of them locally and reupload all the relevant files.
 
