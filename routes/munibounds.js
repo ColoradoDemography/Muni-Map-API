@@ -5,11 +5,11 @@ var pg = require('pg');
 
 var appRouter = function(app) {
 
-    app.get("/munis", function(req, res) {
+    app.get("/munibounds", function(req, res) {
 
         var db = 'dola';
         var schema = 'bounds';
-        var tname = 'web_annexations';
+        var tname = 'munibounds';
 
 
         var tolerance = 0;
@@ -78,7 +78,7 @@ var appRouter = function(app) {
         } //bounding box example: "-105,40,-104,39" no spaces no quotes
 
 
-        var sql = "SELECT gid, city, cityname, rec_num, county, cl_re_date, descr, ord_num, type, notes, st_asgeojson(st_transform(ST_Simplify(geom," + tolerance + "),4269)) AS geojson from " + schema + "." + tname + " where " + bbstr + ";";
+        var sql = "SELECT id, city, first_city, st_asgeojson(st_transform(ST_Simplify(geom," + tolerance + "),4269)) AS geojson from " + schema + "." + tname + " where " + bbstr + ";";
         
 
 
@@ -142,7 +142,6 @@ var appRouter = function(app) {
             });
         }
     });
-
 }
 
 module.exports = appRouter;
