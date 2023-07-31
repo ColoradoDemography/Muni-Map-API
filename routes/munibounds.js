@@ -78,7 +78,7 @@ var appRouter = function(app) {
         } //bounding box example: "-105,40,-104,39" no spaces no quotes
 
 
-        var sql = "SELECT id, city, first_city, st_asgeojson(st_transform(ST_Simplify(geom," + tolerance + "),4269)) AS geojson from " + schema + "." + tname + " where " + bbstr + ";";
+        var sql = "SELECT city, first_city, st_asgeojson(st_transform(ST_Simplify(geom," + tolerance + "),4269)) AS geojson from " + schema + "." + tname + " where " + bbstr + ";";
         
 
 
